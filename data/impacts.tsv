@@ -1,84 +1,66 @@
 Name	Location	Latitude	Longitude	Diameter (EIDB)	Diameter (Schmeider)	Diameter	Diameter Reference	Age (EIDB)	Age Reference (Schmieder)	Radioisotopic age constraints (Schmieder)	Age (Schmieder)	Age [Ma]	Age_sigma [Ma]	Min_Age [Ma]	Min_Age_sigma [Ma]	Max_Age [Ma]	Max_Age_sigma [Ma]	Age Reference	Type of target rock
-Vredefort	South Africa	27°00′S	27°30′E	160****	250	250	10.1089/ast.2019.2085	2023 ± 4	Kamo et al. (1996)	U-Pb (CA-TIMS, melt-crystallized zircon)	2023 ± 4	2023	2					10.1089/ast.2019.2085	Crystalline
-Sudbury	Ontario, Canada	46°36′N	81°11′W	130****	200	200	10.1089/ast.2019.2085	1850 ± 3	Krogh et al. (1984); Davis (2008)	U-Pb (CA-TIMS, melt-grown zircon in felsic norite)	1849.53 ± 0.21	1849.53	0.105					10.1089/ast.2019.2085	Crystalline
-Chicxulub	Yucatan, Mexico	21°20′N	89°30′W	150****	180	150	EIDB	64.98 ± 0.05	Swisher et al. (1992), recalculated Renne et al. (2013, 2018); Sprain et al. (2015, 2018); Clyde et al. (2016)	Ar-Ar (impact melt rock and glassy microtektites)	66.052 ± 0.043	66.052	0.043					10.1089/ast.2019.2085	Mixed
-Popigai	Russia	71°30′N	111°00′E	90****	100	90	EIDB	35.7 ± 0.2	Bottomley et al. (1997), recalculated, mean of 4 plateau ages	Ar-Ar (impact melt rock)	36.63 ± 0.92	36.63	0.46					10.1089/ast.2019.2085	Mixed
-Acraman	South Australia	32°01′S	135°27′E	90	40–90	90	EIDB	590	Williams and Gostin (2005); Schmieder et al. (2015b) and references therein	 	∼635 to 541			541	0.29	635.2	0.3	10.1089/ast.2019.2085	Crystalline (dacite)
-Manicouagan	Quebec, Canada	51°23′N	68°42′W	85****	100	85	EIDB	214 ± 1	Hodych and Dunning (1992); Ramezani et al. (2005)	U-Pb (ID-TIMS, melt-grown zircon)	215.56 ± 0.05	215.56	0.05					10.1089/ast.2019.2085	Mixed
-Chesapeake	Virginia, U.S.A.	37°15′N	76°05′W	40****	∼40 to 45	40	EIDB	35.3 ± 0.1	Assis Fernandes et al. (2019)	Ar-Ar (tektites and impact melt rock)	34.86 ± 0.32	34.86	0.16					10.1089/ast.2019.2085	Sedimentary
-Morokweng	South Africa	26°28′S	23°32′E	70	70	70	EIDB	145.0 ± 0.8	Hart et al. (1997); Koeberl et al. (1997a); Kenny et al. (2019a)	U-Pb (CA-ID-TIMS, melt-grown zircon)	146.06 ± 0.16	146.056	0.09					10.1089/ast.2019.2085	Crystalline
-Kara	Russia	69°05′N	64°18′E	65	65	65	EIDB	70.3 ± 2.2	Trieloff et al. (1998), recalculated	Ar-Ar (impact melt rock)	70.7 ± 2.2	70.7	1.1					10.1089/ast.2019.2085	Mixed
-Beaverhead	Montana, U.S.A.	44°36′N	113°00′W	60	60	60	EIDB	600	Hargraves et al. (1994)	Ar-Ar (impact melt rock)	900–470			470		900		10.1089/ast.2019.2085	Mixed
-Tookoonooka	Queensland, Australia	27°00′S	143°00′E	55	55	55	EIDB	128 ± 5	Bron and Gostin (2012); Olierook et al. (2019)	 	125 ± 1; ∼121.8 to 123.8?	125	1					10.1089/ast.2019.2085	Sedimentary
-Charlevoix	Quebec, Canada	47°32′N	70°18′W	54	54	54	EIDB	342 ± 15	Whitehead et al. (2003); Schmieder et al. (2019)	U-Pb (zircon in impact melt rock)	∼453 to 430	450	10	430		453		10.1089/ast.2019.2085	Mixed
-Siljan	Sweden	61°02′N	14°52′E	52	52	52	EIDB	376.8 ± 1.7	Jourdan and Reimold (2012)	Ar-Ar (impact melt rock)	380.9 ± 4.6	380.9	4.6					10.1089/ast.2019.2085	Mixed
-Karakul (Kara-Kul)	Tajikistan	39°01′N	73°27′E	52	52	52	EIDB	< 5	Gurov et al. (1993); Baratoux et al. (2012)	 	<60			0		60		10.1089/ast.2019.2085	Crystalline
-Montagnais	Nova Scotia, Canada	42°53′N	64°13′W	45	45	45	EIDB	50.50 ± 0.76	Bottomley and York (1988), recalculated	Ar-Ar (impact melt rock)	51.1 ± 1.6	55.1	1.6					10.1089/ast.2019.2085	Sedimentary (shelf)
-Lake Saint Martin	Manitoba, Canada	51°47′N	98°32′W	40	40	40	EIDB	220 ± 32	Schmieder et al. (2014a)	Ar-Ar (impact-melted feldspar and melt rock)	227.8 ± 0.9	227.8	0.55					10.1089/ast.2019.2085	Mixed
-Puchezh-Katunki	Russia	57°06′N	43°35′E	40****	80	40	EIDB	167 ± 3	Holm-Alwmark et al. (2019)	Ar-Ar (impact melt rock)	196–192	193.626	1.306	192.1	0.3	196.3	0.4	10.1089/ast.2019.2085	Mixed
-Araguainha	Brazil	16°46′S	52°59′W	40	40	40	EIDB	254.7 ± 2.5	Tohver et al. (2012); Erickson et al. (2017); Hauser et al. (2019)	U-Pb (SHRIMP, LA-ICP-MS, SIMS, monazite and zircon), Ar-Ar (var. lithologies)	254.7 ± 2.5?; 259 ± 5?; 251.5 ± 2.9?	254.7	1.25					10.1089/ast.2019.2085	Mixed
-Mjølnir	Norway	73°48′N	29°40′E	40	20–40	40	EIDB	142.0 ± 2.6	Smelror et al. (2001)	 	∼143.0 ± 2	143	2					10.1089/ast.2019.2085	Sedimentary (sea floor)
-Woodleigh	Western Australia	26°05′S	114°43′E	40	60	60	10.1089/ast.2019.2085	364 ± 8	Renne et al. (2002); Sheppard et al. (2010)	 	2005–168			168		835		10.1111/j.1945-5100.2003.tb00301.x	Mixed
-Carswell	Saskatchewan, Canada	58°27′N	109°30′W	39	39	39	EIDB	115 ± 10	Alwmark et al. (2017)	Ar-Ar (adularia in impact melt rock)	481.5 ± 0.8 Ma	481.5	0.4					10.1089/ast.2019.2085	Mixed
-Clearwater Lake West 	Quebec, Canada	56°13′N	74°30′W	36	36	36	EIDB	290 ± 20	Bottomley et al. (1990); Schmieder et al. (2015a)	Ar-Ar (impact melt rock)	286.2 ± 2.6	286.2	1.3					10.1089/ast.2019.2085	Mixed
-Manson	Iowa, U.S.A.	42°35′N	94°31′W	35	35	35	EIDB	74.1± 0.1	Izett et al. (1998), recalculated	Ar-Ar (sanidine in melt breccia)	75.9 ± 0.1	75.9	0.1					10.1089/ast.2019.2085	Mixed
-Saqqar	Saudi Arabia	29°35′N	38°42′E	34	34	34	EIDB	70 - 410	Neville et al. (2014); Kenkmann et al. (2015)	 	70–410			40		410		10.1089/ast.2019.2085	Sedimentary
-Slate Islands	Ontario, Canada	48°40′N	87°00′W	30	30	30	EIDB	450	Sharpton et al. (1997); Grieve (2006)	Ar-Ar (impact melt rock)	∼450	450	50					10.1089/ast.2019.2085	Mixed
-Keurusselkä	Finland	62°08′N	24°36′E	~30	30	30	EIDB	< 1800	Schmieder et al. (2016a)	Ar-Ar (impact melt breccia)	1151 ± 10	1151	5.5					10.1111/maps.12594	Crystalline
-Shoemaker (Lake Teague)	Western Australia	25°52′S	120°53′E	30	30	30	EIDB	1630 ± 5	Pirajno et al. (2003)	Minimum K-Ar alteration age (illite)	∼1300 to 568			568		1300		10.1089/ast.2019.2085	Mixed
-Yarrabubba	Western Australia	27°10′S	119°50′E	30	30–70	30	EIDB	2000	Fletcher and McNaughton (2002); Erickson et al., (2019a, 2019b)	U-Pb (monazite and zircon in impact melt rock)	2229 ± 5	2229	2.5					10.1038/s41467-019-13985-7	Crystalline
-Mistastin	Newfoundland/Labrador, Canada	55°53′N	63°18′W	28	28	28	EIDB	36.4 ± 4	Sylvester et al. (2013)	U–Pb (CA-TIMS, melt rock zircon)	37.83 ± 0.05	37.83	0.05					10.1089/ast.2019.2085	Crystalline
-Clearwater Lake East	Quebec, Canada	56°05′N	74°07′W	26	26	26	EIDB	460-470	Bottomley et al. (1990); Schmieder et al. (2015a)	Ar-Ar (impact melt rock)	470–460	461	5	460		470		10.1089/ast.2019.2085	Crystalline
-Steen River	Alberta, Canada	59°31′N	117°37′W	25	25	25	EIDB	91 ± 7	MacLagan (2018); MacLagan et al. (2018)	U-Pb (SIMS, zircon in impact melt rock)	∼383 to 108; 132 ± 1.3?	132	1.3					10.1089/ast.2019.2085	Mixed
-Kamensk	Russia	48°20′N	40°15′E	25	25	25	EIDB	49.0 ± 0.2	Jourdan et al. (2012) after Izett et al. (1994)	Ar-Ar (impact glass)	50.37 ± 0.40	50.37	0.4					10.1089/ast.2019.2085	Sedimentary
-Strangways	Northern Territory, Australia	15°12′S	133°35′E	25	25	25	EIDB	646 ± 42	Spray et al. (1999), recalculated	Ar-Ar (impact melt rock)	657 ± 43	657	21.5					10.1089/ast.2019.2085	Mixed
-Tunnunik (Prince Albert)	Victoria Island, Arctic Canada	72°27′N	113°54′W	~25	25	25	EIDB	>130, <450	Lepaulard et al. (2019)	 	∼450 to 430			430		450		10.1089/ast.2019.2085	Sedimentary
-Nördlinger Ries (Ries crater)	Germany	48°53′N	10°37′E	24	24	24	EIDB	15.1 ± 0.1	Schmieder et al. (2018a, 2018b)	Ar-Ar (moldavite tektites)	14.808 ± 0.038	14.808	0.038					10.1089/ast.2019.2085	Mixed
-Boltysh	Ukraine	48°45′N	32°10′E	24	24	24	EIDB	65.17 ± 0.64	Kelley and Gurov (2002), recalculated Jourdan (2012)	Ar-Ar (impact melt rock)	65.80 ± 0.67	65.8	0.335					10.1089/ast.2019.2085	Crystalline
-Presqu'île	Quebec, Canada	49°43′N	78°48′W	24	24	24	EIDB	< 500	Higgins and Tait (1990)	 	<2729			0		2729		10.1089/ast.2019.2085	Crystalline
-Haughton	Nunavut, Canada	75°22′N	89°41′W	23	24	23	EIDB	39	Jessberger (1988); Young et al. (2013)	Ar-Ar (impactites)	23.4 ± 1.0	23.4	1					10.1089/ast.2019.2085	Mixed
-Lappajärvi	Finland	63°09′N	23°42′E	23	23	23	EIDB	76.20 ± 0.29	Schmieder and Jourdan (2013a); Kenny et al. (2019b)	U-Pb (zircon in impact melt rock)	77.85 ± 0.78	77.85	0.78					10.1089/ast.2019.2085	Mixed
-Rochechouart	France	45°50′N	0°56′E	23	23–40	23	EIDB	201 ± 2	Schmieder et al. (2010b); Cohen et al. (2017)	Ar-Ar (impact melt rock)	206.92 ± 0.32	206.92	0.32					10.1089/ast.2019.2085	Crystalline
-Gosses Bluff	Northern Territory, Australia	23°50′S	132°19′E	22	22	22	EIDB	142.5 ± 0.8	Schmieder, Tohver and Jourdan (unpublished data); Haines (2005)	Ar-Ar minimum age (impact melt rock)	∼383 to 165			165		383		10.1089/ast.2019.2085	Sedimentary
-Obolon’	Ukraine	49°30′N	32°55′E	20	20	20	EIDB	169 ± 7	Gurov et al. (2009)	K-Ar (impact melt rock)	169 ± 7?	169	7					10.1089/ast.2019.2085	Sedimentary
-Amelia Creek	Northern Territory, Australia	20°51′S	134°53′E	~20	20	20	EIDB	1640 - 600	Haines (2005)	 	1640–600			588	23.5	1660	20	10.1080/08120090500170401	Mixed
-Logancha	Russia	65°30′N	95°48′E	20	20	20	EIDB	40 ± 20	Masaitis (1999)	 	∼66 to 23			23		66		10.1089/ast.2019.2085	Mixed
-São Miguel do Tapuio	Brazil	5°38′S	41°23′W		20	20	10.1089/ast.2019.2085		Crósta et al. (2019a, 2019b)	 	<382			0		382		10.1089/ast.2019.2085	Sedimentary
-Dellen	Sweden	61°55′N	16°39′E	19	19	19	EIDB	89.0 ± 2.7	Mark et al. (2014)	Ar-Ar (impact melt rock)	140.82 ± 0.51	140.82	0.51					10.1089/ast.2019.2085	Crystalline
-Glikson	Western Australia	23°59′S	121°34′E	~19	19	19	EIDB	< 508	Macdonald et al. (2005)	 	<508 ± 5			0		508	5	10.1089/ast.2019.2085	Sedimentary
-El'gygytgyn	Russia	67°30′N	172°05′E	18	18	18	EIDB	3.5 ± 0.5	Layer (2000)	Ar-Ar (impact melt rock)	3.65 ± 0.08	3.65	0.08					10.1089/ast.2019.2085	Crystalline (volcanic)
-Oasis	Libya	24°35′N	24°24′E	18	18	18	EIDB	< 120	Koeberl et al. (2005b)	 	≤120			0		120		10.1089/ast.2019.2085	Sedimentary
-Lawn Hill	Queensland, Australia	18°40′S	138°39′E	18	18	18	EIDB	> 515	Darlington et al. (2016), recalculated	Ar-Ar (impact melt breccia)	476 ± 8	476	8					10.1089/ast.2019.2085	Mixed
-Luizi	Democratic Republic of Congo	10°10′S	27°55′E	17	17	17	EIDB	< 573	Master et al. (2001); Ferrière et al. (2011)	 	≤573			0		573		10.1089/ast.2019.2085	Sedimentary
-Ames	Oklahoma, U.S.A.	36°15′N	98°10′W	16	16	16	EIDB	470 ± 30	Koeberl et al. (2001)	 	∼478 to 458			458		478		10.1089/ast.2019.2085	Mixed
-Kaluga	Russia	54°30′N	36°15′E	15	15	15	EIDB	380 ± 5	Masaitis (1999, 2002)	 	∼394 to 383			394		389		10.1089/ast.2019.2085	Mixed
-Logoisk	Belarus	54°12′N	27°48′E	15	17	15	EIDB	42.3 ± 1.1	Jourdan et al. (2012) after Sherlock et al. (2009)	Ar-Ar (impact glass)	30.0 ± 0.5	30.0	0.5	520		1400		10.1089/ast.2019.2085	Mixed
-Cleanskin	Australia	18°10′S	137°56′E		15	15	10.1089/ast.2019.2085		Haines et al. (2012)	 	∼1400 to 520			520		1400		10.1089/ast.2019.2085	Sedimentary
-Yallalie	Australia	30°28′S	115°47′E		15	15	10.1089/ast.2019.2085		Cox et al. (2019)	 	89.8–83.6 Ma			83.6		89.8		10.1089/ast.2019.2085	Sedimentary
-Zhamanshin	Kazakhstan	48°24′N	60°58′E	14	14	14	EIDB	0.9 ± 0.1	Deino et al. (1990), recalculated	Ar-Ar (impact glass)	0.91 ± 0.14	0.91	0.14					10.1089/ast.2019.2085	Mixed
-Jänisjärvi	Russia	61°58′N	30°55′E	14	14	14	EIDB	700 ± 5	Jourdan et al. (2012) after Jourdan et al. (2008)	Ar-Ar (impact melt rock)	687 ± 5	687	2.5					10.1089/ast.2019.2085	Crystalline
-Gweni-Fada	Chad, Africa	17°25′N	21°45′E	14	22	14	EIDB	< 345	Koeberl et al. (2005a)	 	≤383			0		383		10.1089/ast.2019.2085	Sedimentary
-Pantasma	Nicaragua	13°12′N	85°57′W		14	14	10.1089/ast.2019.2085		Rochette et al. (2019)	Ar-Ar (impact glass)	0.815 ± 0.011	0.815	0.011					10.1089/ast.2019.2085	Crystalline (volcanic)
-Cerro do Jarau	Brazil	30°12′S	56°32′W		13.5	13.5	10.1089/ast.2019.2085		Crósta et al. (2019a)	 	≤135			0		135		10.1089/ast.2019.2085	Mixed
-Deep Bay	Saskatchewan, Canada	56°24′N	102°59′W	13	13	13	EIDB	99 ± 4	Grieve (2006)	 	102–95			95		102		10.1089/ast.2019.2085	Crystalline
-Sierra Madera	Texas, U.S.A.	30°36′N	102°55′W	13	13	13	EIDB	< 100	Wilshire et al. (1972)	 	<113			0		113		10.1089/ast.2019.2085	Sedimentary
-Kentland	Indiana, U.S.A.	40°45′N	87°24′W	13	13	13	EIDB	< 97	Weber et al. (2005)	 	∼300 to 1			1		300		10.1089/ast.2019.2085	Sedimentary
-Spider	Western Australia	16°44′S	126°05′E	13	13	13	EIDB	> 570	Abels (2005)	 	∼900 to 580			0		900		10.1080/08120090500170310	Sedimentary
-Marquez	Texas, U.S.A.	31°17′N	96°18′W	12.7	13	12.7	EIDB	58 ± 2	Sharpton and Gibson (1990); McHone and Sorkhabi (1994)	 	58.3 ± 3.1	58.3	3.1					10.1089/ast.2019.2085	Sedimentary
-Aorounga	Chad	19°06′N	19°15′E	12.6	16	12.6	EIDB	< 345	Koeberl et al. (2005a)	 	≤383			0		383		10.1089/ast.2019.2085	Sedimentary
-Nicholson Lake	Northwest Territories, Canada	62°40′N	102°41′W	12.5	12.5	12.5	EIDB	< 400	McGregor et al. (2018)	U-Pb (impact-heated apatite)	387 ± 5	387	2.5					10.1089/ast.2019.2085	Mixed
-Wells Creek	Tennessee, U.S.A.	36°23′N	87°40′W	12	12	12	EIDB	200 ± 100	Ford (2015)	 	∼323 to 100			100		323		10.1089/ast.2019.2085	Sedimentary
-Serra da Cangalha	Brazil	8°05′S	46°52′W	12	12	12	EIDB	< 300	Kenkmann et al. (2011)	 	≤250			0		250		10.1089/ast.2019.2085	Sedimentary
-Avak	Alaska, U.S.A.	71°15′N	156°36′W	12	12	12	EIDB	3-95	Banet and Fenton (2008)	 	94–90			90		94		10.1089/ast.2019.2085	Sedimentary
-Vargeão	Brazil	26°50′S	52°07′W	12	12	12	EIDB	123 ±1.4	Nédélec et al. (2013)	U-Pb (zircon in impact melt breccia)	123.0 ± 1.4	123	0.7					10.1089/ast.2019.2085	 
-Dhala	India	25°18′N	78°08′E	11	11	11	EIDB	> 1700 < 2100	Pati et al. (2008, 2010)	 	∼2500 to 1700			1700		2500		10.1089/ast.2019.2085	Mixed
-Ternovka (Terny)	Ukraine	48°01′N	E33°05′	11	16–19	11	EIDB	280 ± 10	Val'ter et al. (1981)	K-Ar (feldspar and mica)	280 ± 10	280	10					10.1089/ast.2019.2085	Mixed
-Bosumtwi	Ghana	6°32′N	1°25′W	10.5	10.5	10.5	EIDB	1.07	Jourdan (2012) after Koeberl et al. (1997b)	Ar-Ar (Ivory Coast tektites)	1.13 ± 0.10	1.13	0.10					10.1089/ast.2019.2085	Crystalline
-Karla	Russia	54°54′N	48°00′E	10	12	10	EIDB	5 ± 1	Masaitis (1999)	 	5 ± 1	5	1					10.1089/ast.2019.2085	Sedimentary
-Paasselkä	Finland	62°12′N	29°23′E	10	10	10	EIDB	Schmieder et al. (2010c); Schwarz et al. (2015)	Schmieder et al. (2010c); Schwarz et al. (2015)	Ar-Ar (recrystallized feldspar glass and impact melt breccia)	231.0 ± 2.2	231	1.1					10.1089/ast.2019.2085	Mixed
-Kelly West	Northern Territory, Australia	19°56′S	133°57′E	10	10	10	EIDB	> 550	Haines (2005)	 	∼1640 to 550			485.4	0.475	541	0.5	10.1080/14400957308527900	Crystalline
-Upheaval Dome	Utah, U.S.A.	38°26′N	109°54′W	10	10	10	EIDB	< 170	Kriens et al. (1999)	 	<183			0		183		10.1089/ast.2019.2085	Sedimentary
-Eagle Butte	Alberta, Canada	49°42′N	110°35′W	10	10	10	EIDB	< 65	Grieve (2006)	 	<65			0		65		10.1089/ast.2019.2085	Sedimentary
+Chicxulub	Yucatan, Mexico	21�20?N	89�30?W	150****	180	150	EIDB	64.98 � 0.05	Swisher et al. (1992), recalculated Renne et al. (2013, 2018); Sprain et al. (2015, 2018); Clyde et al. (2016)	Ar-Ar (impact melt rock and glassy microtektites)	66.052?�?0.043	66.052	0.043					10.1089/ast.2019.2085	Mixed
+Popigai	Russia	71�30?N	111�00?E	90****	100	90	EIDB	35.7 � 0.2	Bottomley et al. (1997), recalculated, mean of 4 plateau ages	Ar-Ar (impact melt rock)	36.63?�?0.92	36.63	0.46					10.1089/ast.2019.2085	Mixed
+Manicouagan	Quebec, Canada	51�23?N	68�42?W	85****	100	85	EIDB	214 � 1	Hodych and Dunning (1992); Ramezani et al. (2005)	U-Pb (ID-TIMS, melt-grown zircon)	215.56?�?0.05	215.56	0.05					10.1089/ast.2019.2085	Mixed
+Chesapeake	Virginia, U.S.A.	37�15?N	76�05?W	40****	?40 to 45	40	EIDB	35.3 � 0.1	Assis Fernandes et al. (2019)	Ar-Ar (tektites and impact melt rock)	34.86?�?0.32	34.86	0.16					10.1089/ast.2019.2085	Sedimentary
+Morokweng	South Africa	26�28?S	23�32?E	70	70	70	EIDB	145.0 � 0.8	Hart et al. (1997); Koeberl et al. (1997a); Kenny et al. (2019a)	U-Pb (CA-ID-TIMS, melt-grown zircon)	146.06?�?0.16	146.056	0.09					10.1089/ast.2019.2085	Crystalline
+Kara	Russia	69�05?N	64�18?E	65	65	65	EIDB	70.3 � 2.2	Trieloff et al. (1998), recalculated	Ar-Ar (impact melt rock)	70.7?�?2.2	70.7	1.1					10.1089/ast.2019.2085	Mixed
+Tookoonooka	Queensland, Australia	27�00?S	143�00?E	55	55	55	EIDB	128 � 5	Bron and Gostin (2012); Olierook et al. (2019)	�	125?�?1; ?121.8 to 123.8?	125	1					10.1089/ast.2019.2085	Sedimentary
+Charlevoix	Quebec, Canada	47�32?N	70�18?W	54	54	54	EIDB	342 � 15	Whitehead et al. (2003); Schmieder et al. (2019)	U-Pb (zircon in impact melt rock)	?453 to 430			430		453		10.1089/ast.2019.2085	Mixed
+Siljan	Sweden	61�02?N	14�52?E	52	52	52	EIDB	376.8 � 1.7	Jourdan and Reimold (2012)	Ar-Ar (impact melt rock)	380.9?�?4.6	380.9	4.6					10.1089/ast.2019.2085	Mixed
+Montagnais	Nova Scotia, Canada	42�53?N	64�13?W	45	45	45	EIDB	50.50 � 0.76	Bottomley and York (1988), recalculated	Ar-Ar (impact melt rock)	51.1?�?1.6	55.1	1.6					10.1089/ast.2019.2085	Sedimentary (shelf)
+Lake Saint Martin	Manitoba, Canada	51�47?N	98�32?W	40	40	40	EIDB	220 � 32	Schmieder et al. (2014a)	Ar-Ar (impact-melted feldspar and melt rock)	227.8?�?0.9	227.8	0.55					10.1089/ast.2019.2085	Mixed
+Puchezh-Katunki	Russia	57�06?N	43�35?E	40****	80	40	EIDB	167 � 3	Holm-Alwmark et al. (2019)	Ar-Ar (impact melt rock)	196�192			192.1	0.3	196.3	0.4	10.1089/ast.2019.2085	Mixed
+Araguainha	Brazil	16�46?S	52�59?W	40	40	40	EIDB	254.7 � 2.5	Tohver et al. (2012); Erickson et al. (2017); Hauser et al. (2019)	U-Pb (SHRIMP, LA-ICP-MS, SIMS, monazite and zircon), Ar-Ar (var. lithologies)	254.7?�?2.5?; 259?�?5?; 251.5?�?2.9?	254.7	1.25					10.1089/ast.2019.2085	Mixed
+Mj�lnir	Norway	73�48?N	29�40?E	40	20�40	40	EIDB	142.0 � 2.6	Smelror et al. (2001)	�	?143.0?�?2	143	2					10.1089/ast.2019.2085	Sedimentary (sea floor)
+Carswell	Saskatchewan, Canada	58�27?N	109�30?W	39	39	39	EIDB	115 � 10	Alwmark et al. (2017)	Ar-Ar (adularia in impact melt rock)	481.5?�?0.8 Ma	481.5	0.4					10.1089/ast.2019.2085	Mixed
+"Clearwater Lake West "	Quebec, Canada	56�13?N	74�30?W	36	36	36	EIDB	290 � 20	Bottomley et al. (1990); Schmieder et al. (2015a)	Ar-Ar (impact melt rock)	286.2?�?2.6	286.2	1.3					10.1089/ast.2019.2085	Mixed
+Manson	Iowa, U.S.A.	42�35?N	94�31?W	35	35	35	EIDB	74.1� 0.1	Izett et al. (1998), recalculated	Ar-Ar (sanidine in melt breccia)	75.9?�?0.1	75.9	0.1					10.1089/ast.2019.2085	Mixed
+Slate Islands	Ontario, Canada	48�40?N	87�00?W	30	30	30	EIDB	450	Sharpton et al. (1997); Grieve (2006)	Ar-Ar (impact melt rock)	?450							10.1089/ast.2019.2085	Mixed
+Mistastin	Newfoundland/Labrador, Canada	55�53?N	63�18?W	28	28	28	EIDB	36.4 � 4	Sylvester et al. (2013)	U�Pb (CA-TIMS, melt rock zircon)	37.83?�?0.05	37.83	0.05					10.1089/ast.2019.2085	Crystalline
+Clearwater Lake East	Quebec, Canada	56�05?N	74�07?W	26	26	26	EIDB	460-470	Bottomley et al. (1990); Schmieder et al. (2015a)	Ar-Ar (impact melt rock)	470�460			460		470		10.1089/ast.2019.2085	Crystalline
+Steen River	Alberta, Canada	59�31?N	117�37?W	25	25	25	EIDB	91 � 7	MacLagan (2018); MacLagan et al. (2018)	U-Pb (SIMS, zircon in impact melt rock)	?383 to 108; 132?�?1.3?	132	1.3					10.1089/ast.2019.2085	Mixed
+Kamensk	Russia	48�20?N	40�15?E	25	25	25	EIDB	49.0 � 0.2	Jourdan et al. (2012) after Izett et al. (1994)	Ar-Ar (impact glass)	50.37?�?0.40	50.37	0.4					10.1089/ast.2019.2085	Sedimentary
+N�rdlinger Ries (Ries crater)	Germany	48�53?N	10�37?E	24	24	24	EIDB	15.1 � 0.1	Schmieder et al. (2018a, 2018b)	Ar-Ar (moldavite tektites)	14.808?�?0.038	14.808	0.038					10.1089/ast.2019.2085	Mixed
+Boltysh	Ukraine	48�45?N	32�10?E	24	24	24	EIDB	65.17 � 0.64	Kelley and Gurov (2002), recalculated Jourdan (2012)	Ar-Ar (impact melt rock)	65.80?�?0.67	65.8	0.335					10.1089/ast.2019.2085	Crystalline
+Haughton	Nunavut, Canada	75�22?N	89�41?W	23	24	23	EIDB	39	Jessberger (1988); Young et al. (2013)	Ar-Ar (impactites)	23.4?�?1.0	23.4	1					10.1089/ast.2019.2085	Mixed
+Lappaj�rvi	Finland	63�09?N	23�42?E	23	23	23	EIDB	76.20 � 0.29	Schmieder and Jourdan (2013a); Kenny et al. (2019b)	U-Pb (zircon in impact melt rock)	77.85?�?0.78	77.85	0.78					10.1089/ast.2019.2085	Mixed
+Rochechouart	France	45�50?N	0�56?E	23	23�40	23	EIDB	201 � 2	Schmieder et al. (2010b); Cohen et al. (2017)	Ar-Ar (impact melt rock)	206.92?�?0.32	206.92	0.32					10.1089/ast.2019.2085	Crystalline
+Gosses Bluff	Northern Territory, Australia	23�50?S	132�19?E	22	22	22	EIDB	142.5 � 0.8	Schmieder, Tohver and Jourdan (unpublished data); Haines (2005)	Ar-Ar minimum age (impact melt rock)	?383 to 165			165		383		10.1089/ast.2019.2085	Sedimentary
+Obolon�	Ukraine	49�30?N	32�55?E	20	20	20	EIDB	169 � 7	Gurov et al. (2009)	K-Ar (impact melt rock)	169?�?7?	169	7					10.1089/ast.2019.2085	Sedimentary
+Logancha	Russia	65�30?N	95�48?E	20	20	20	EIDB	40 � 20	Masaitis (1999)	�	?66 to 23			23		66		10.1089/ast.2019.2085	Mixed
+Dellen	Sweden	61�55?N	16�39?E	19	19	19	EIDB	89.0 � 2.7	Mark et al. (2014)	Ar-Ar (impact melt rock)	140.82?�?0.51	140.82	0.51					10.1089/ast.2019.2085	Crystalline
+Glikson	Western Australia	23�59?S	121�34?E	~19	19	19	EIDB	< 508	Macdonald et al. (2005)	�	<508?�?5			0		508	5	10.1089/ast.2019.2085	Sedimentary
+El'gygytgyn	Russia	67�30?N	172�05?E	18	18	18	EIDB	3.5 � 0.5	Layer (2000)	Ar-Ar (impact melt rock)	3.65?�?0.08	3.65	0.08					10.1089/ast.2019.2085	Crystalline (volcanic)
+Oasis	Libya	24�35?N	24�24?E	18	18	18	EIDB	< 120	Koeberl et al. (2005b)	�	?120			0		120		10.1089/ast.2019.2085	Sedimentary
+Lawn Hill	Queensland, Australia	18�40?S	138�39?E	18	18	18	EIDB	> 515	Darlington et al. (2016), recalculated	Ar-Ar (impact melt breccia)	476?�?8	476	8					10.1089/ast.2019.2085	Mixed
+Luizi	Democratic Republic of Congo	10�10?S	27�55?E	17	17	17	EIDB	< 573	Master et al. (2001); Ferri�re et al. (2011)	�	?573			0		573		10.1089/ast.2019.2085	Sedimentary
+Ames	Oklahoma, U.S.A.	36�15?N	98�10?W	16	16	16	EIDB	470 � 30	Koeberl et al. (2001)	�	?478 to 458			458		478		10.1089/ast.2019.2085	Mixed
+Kaluga	Russia	54�30?N	36�15?E	15	15	15	EIDB	380 � 5	Masaitis (1999, 2002)	�	?394 to 383			394		389		10.1089/ast.2019.2085	Mixed
+Logoisk	Belarus	54�12?N	27�48?E	15	17	15	EIDB	42.3 � 1.1	Jourdan et al. (2012) after Sherlock et al. (2009)	Ar-Ar (impact glass)	30.0?�?0.5	30	0.5	520		1400		10.1089/ast.2019.2085	Mixed
+Cleanskin	Australia	18�10?S	137�56?E		15	15	10.1089/ast.2019.2085		Haines et al. (2012)	�	?1400 to 520			520		1400		10.1089/ast.2019.2085	Sedimentary
+Yallalie	Australia	30�28?S	115�47?E		15	15	10.1089/ast.2019.2085		Cox et al. (2019)	�	89.8�83.6 Ma			83.6		89.8		10.1089/ast.2019.2085	Sedimentary
+Zhamanshin	Kazakhstan	48�24?N	60�58?E	14	14	14	EIDB	0.9 � 0.1	Deino et al. (1990), recalculated	Ar-Ar (impact glass)	0.91?�?0.14	0.91	0.14					10.1089/ast.2019.2085	Mixed
+Gweni-Fada	Chad, Africa	17�25?N	21�45?E	14	22	14	EIDB	< 345	Koeberl et al. (2005a)	�	?383			0		383		10.1089/ast.2019.2085	Sedimentary
+Pantasma	Nicaragua	13�12?N	85�57?W		14	14	10.1089/ast.2019.2085		Rochette et al. (2019)	Ar-Ar (impact glass)	0.815?�?0.011	0.815	0.011					10.1089/ast.2019.2085	Crystalline (volcanic)
+Cerro do Jarau	Brazil	30�12?S	56�32?W		13.5	13.5	10.1089/ast.2019.2085		Cr�sta et al. (2019a)	�	?135			0		135		10.1089/ast.2019.2085	Mixed
+Deep Bay	Saskatchewan, Canada	56�24?N	102�59?W	13	13	13	EIDB	99 � 4	Grieve (2006)	�	102�95			95		102		10.1089/ast.2019.2085	Crystalline
+Sierra Madera	Texas, U.S.A.	30�36?N	102�55?W	13	13	13	EIDB	< 100	Wilshire et al. (1972)	�	<113			0		113		10.1089/ast.2019.2085	Sedimentary
+Kentland	Indiana, U.S.A.	40�45?N	87�24?W	13	13	13	EIDB	< 97	Weber et al. (2005)	�	?300 to 1			1		300		10.1089/ast.2019.2085	Sedimentary
+Marquez	Texas, U.S.A.	31�17?N	96�18?W	12.7	13	12.7	EIDB	58 � 2	Sharpton and Gibson (1990); McHone and Sorkhabi (1994)	�	58.3?�?3.1	58.3	3.1					10.1089/ast.2019.2085	Sedimentary
+Aorounga	Chad	19�06?N	19�15?E	12.6	16	12.6	EIDB	< 345	Koeberl et al. (2005a)	�	?383			0		383		10.1089/ast.2019.2085	Sedimentary
+Nicholson Lake	Northwest Territories, Canada	62�40?N	102�41?W	12.5	12.5	12.5	EIDB	< 400	McGregor et al. (2018)	U-Pb (impact-heated apatite)	387?�?5	387	5					10.1089/ast.2019.2085	Mixed
+Wells Creek	Tennessee, U.S.A.	36�23?N	87�40?W	12	12	12	EIDB	200 � 100	Ford (2015)	�	?323 to 100			100		323		10.1089/ast.2019.2085	Sedimentary
+Serra da Cangalha	Brazil	8�05?S	46�52?W	12	12	12	EIDB	< 300	Kenkmann et al. (2011)	�	?250			0		250		10.1089/ast.2019.2085	Sedimentary
+Avak	Alaska, U.S.A.	71�15?N	156�36?W	12	12	12	EIDB	3-95	Banet and Fenton (2008)	�	94�90			90		94		10.1089/ast.2019.2085	Sedimentary
+Varge�o	Brazil	26�50?S	52�07?W	12	12	12	EIDB	123 �1.4	N�d�lec et al. (2013)	U-Pb (zircon in impact melt breccia)	123.0?�?1.4	123	1.4					10.1089/ast.2019.2085	�
+Dhala	India	25�18?N	78�08?E	11	11	11	EIDB	> 1700 < 2100	Pati et al. (2008, 2010)	�	?2500 to 1700			1700		2500		10.1089/ast.2019.2085	Mixed
+Ternovka (Terny)	Ukraine	48�01?N	E33�05?	11	16�19	11	EIDB	280 � 10	Val'ter et al. (1981)	K-Ar (feldspar and mica)	280?�?10	280	10					10.1089/ast.2019.2085	Mixed
+Bosumtwi	Ghana	6�32?N	1�25?W	10.5	10.5	10.5	EIDB	1.07	Jourdan (2012) after Koeberl et al. (1997b)	Ar-Ar (Ivory Coast tektites)	1.13?�?0.10	1.13	0.1					10.1089/ast.2019.2085	Crystalline
+Karla	Russia	54�54?N	48�00?E	10	12	10	EIDB	5 � 1	Masaitis (1999)	�	5?�?1	5	1					10.1089/ast.2019.2085	Sedimentary
+Paasselk�	Finland	62�12?N	29�23?E	10	10	10	EIDB	Schmieder et al. (2010c); Schwarz et al. (2015)	Schmieder et al. (2010c); Schwarz et al. (2015)	Ar-Ar (recrystallized feldspar glass and impact melt breccia)	231.0?�?2.2	231	2.2					10.1089/ast.2019.2085	Mixed
+Upheaval Dome	Utah, U.S.A.	38�26?N	109�54?W	10	10	10	EIDB	< 170	Kriens et al. (1999)	�	<183			0		183		10.1089/ast.2019.2085	Sedimentary
+Eagle Butte	Alberta, Canada	49�42?N	110�35?W	10	10	10	EIDB	< 65	Grieve (2006)	�	<65			0		65		10.1089/ast.2019.2085	Sedimentary
 Flaxman	South Australia			10		10	EIDB	> 35										10.1089/ast.2019.2085
-Ramgarh	India	25°20′N	76°37′E		10	10	10.1089/ast.2019.2085		Ray et al. (2003); Kenkmann et al. (2019)	 	∼750 to 165; ∼165?	165	1.3					10.1089/ast.2019.2085	Sedimentary
-Santa Marta	Brazil	10°10′S	45°14′W	10	10	10	EIDB	66-100	Oliveira et al. (2017); Crósta et al. (2019b)	 	<100			0		100		10.1089/ast.2019.2085	Sedimentary
+Ramgarh	India	25�20?N	76�37?E		10	10	10.1089/ast.2019.2085		Ray et al. (2003); Kenkmann et al. (2019)	�	?750 to 165; ?165?							10.1089/ast.2019.2085	Sedimentary
+Santa Marta	Brazil	10�10?S	45�14?W	10	10	10	EIDB	66-100	Oliveira et al. (2017); Cr�sta et al. (2019b)	�	<100			0		100		10.1089/ast.2019.2085	Sedimentary
