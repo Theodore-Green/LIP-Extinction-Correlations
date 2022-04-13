@@ -4,7 +4,7 @@
 #SBATCH --ntasks-per-node=4
 #SBATCH --time=03:00:00
 #SBATCH --mail-type=BEGIN,END,FAIL
-#SBATCH --mail-user=Theodore.K.Green.21@dartmouth.edu ## Add own email address
+#SBATCH --mail-user=theodore.green@princeton.edu ## Add own email address
 
 cd $SLURM_SUBMIT_DIR
 module load openmpi/4.0.1-gnu4.8.5
