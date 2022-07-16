@@ -40,7 +40,7 @@ end
 boundary_age = boundaries.Age_Ma[boundary_t]
 boundary_age_σ = boundaries.Age_sigma_Ma[boundary_t]
 
-# And from our chosen impact list
+# And from our chosen impact list. Only include impacts that have precise radiometric ages, not ones listed without uncertainties
 if occursin("20km", listname)
     if occursin("without", listname)
         impact_t = (2.588 .< impacts.Age_Ma .< 541) .& (20 .<= impacts.Diameter .< 150) #Exclude Chicxulub
@@ -65,13 +65,13 @@ event_age_σ = impacts.Age_sigma_Ma[impact_t]
 ntests = 2*10^7 # Number of uniform random tests
 histmin = 0
 if occursin("BigFive_with_", listname)
-    histmax = 50 #Observed coincidence products for Big Five with Chicxulub are higher than other lists
+    histmax = 150 #Observed coincidence products for Big Five with Chicxulub are higher than other lists
 end
 if occursin("Stage", listname)
     histmax = 20
 end
 if occursin("BigFive_without", listname)
-    histmax = 20
+    histmax = 100
 end
 histbins = 400
 

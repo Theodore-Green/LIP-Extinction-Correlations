@@ -21,13 +21,13 @@
         #filenamebase = "histcounts_LIPs_Stage_minus_MassExtinctionsProvinces"
         #filenamebase = "histcounts_LIPs_Continental_Stage_minus_MassExtinctionProvinces"
 
-    #Impacts >= 20 km result files
+    #Impacts >= 20 km
         #filenamebase = "histcounts_Impacts_BigFive_with_Chicxulub_20km" #Mass extinction boundaries and Impacts >= 20km including Chicxulub
         #filenamebase = "histcounts_Impacts_BigFive_without_Chicxulub_20km" #Mass extinction boundaries and Impacts >= 20km excluding Chicxulub
         #filenamebase = "histcounts_Impacts_Stage_with_Chicxulub_20km" #Stage boundaries and Impacts >= 20km including Chicxulub
         #filenamebase = "histcounts_Impacts_Stage_without_Chicxulub_20km" #Stage boundaries and Impacts >= 20km excluding Chicxulub
 
-    #Impacts >= 40 km result files
+    #Impacts >= 40 km
         #filenamebase = "histcounts_Impacts_BigFive_with_Chicxulub_40km" #Mass extinction boundaries and Impacts >= 40km including Chicxulub
         #filenamebase = "histcounts_Impacts_BigFive_without_Chicxulub_40km" #Mass extinction boundaries and Impacts >= 40km excluding Chicxulub
         #filenamebase = "histcounts_Impacts_Stage_with_Chicxulub_40km" #Stage boundaries and Impacts >= 40km including Chicxulub
@@ -160,7 +160,9 @@
         ntests = 2*10^7 # Number of uniform random tests
         histmin = 0
         if occursin("BigFive_with_", filenamebase)
-            histmax = 50
+            histmax = 150
+        elseif occursin("BigFive_without_", filenamebase)
+            histmax = 100
         else
             histmax = 20
         end
@@ -202,6 +204,6 @@
     p = sum(histcounts[t])/sum(histcounts)
 
     one_in_every = round(Int,1/p)
-    println("$filenamebase: One in every $one_in_every")
+    println("$filenamebase: One in every $one_in_every, p = $p")
 
 ## --- End of file
