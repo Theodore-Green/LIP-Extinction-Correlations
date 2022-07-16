@@ -3,6 +3,7 @@
     using Statistics, StatsBase, StatGeochem, SpecialFunctions, LoopVectorization
     using LaTeXStrings, Formatting
     using GLM, DataFrames
+    using LsqFit: curve_fit
     using Measurements # For error propagation
 
 ## --- Read datasets and define constants / subsets
@@ -17,7 +18,7 @@
     nlips = length(LIPs.Start_Age_Ma)
     nboundaries = length(Boundaries.Age_Ma)
 
-    extinction_and_rate = plot(xlabel="Bulk eruptive rate (km³/yr)", ylabel="Mean extinction rate (%/interval)", xlims=(0.0,3.7), framestyle=:box)
+    extinction_and_rate = plot(xlabel="Bulk eruptive rate (km³/yr)", ylabel="Extinction magnitude (%)", xlims=(0,3.7), framestyle=:box)
 
     # Resample Lip boundaries using widest date range
     lip_starts = LIPs.Start_Age_Ma + (2 .* LIPs.Start_Age_sigma_Ma)
@@ -27,7 +28,7 @@
     boundary_age = Boundaries.Age_Ma
     boundary_age_sigma = Boundaries.Age_sigma_Ma
 
-    LIPs_with_extinction = DataFrame(LIP_name=[], Eruption_rate=[], Eruption_rate_error_lower=[], Eruption_rate_error_upper=[], Mean_extinction_rate=[], Extinction_rate_error_lower=[], Extinction_rate_error_upper=[], boundary_number=[])
+    LIPs_with_extinction = DataFrame(LIP_name=[], Eruption_rate=[], Eruption_rate_sigma=[], Mean_extinction_rate=[], Extinction_rate_error_lower=[], Extinction_rate_error_upper=[], boundary_number=[])
 
     for i = 1:nboundaries
         t = (lip_ends .< (boundary_age[i] .+ boundary_age_sigma[i])) .& ((boundary_age[i] .- boundary_age_sigma[i]) .< lip_starts)
@@ -41,28 +42,28 @@
             LIP_duration = LIPs.Duration_Ma[lip_index] #LIP duration in Ma
             duration_sigma = sqrt.(LIPs.Start_Age_sigma_Ma[lip_index].^2 .+ LIPs.End_Age_sigma_Ma[lip_index].^2)
             LIP_rate = LIPs.Eruption_rate_km3_yr[lip_index] #LIP eruption rate
-            if name == "Emeishan" #Set minimum eruptive duration of Emeishan to 10,000 years. Otherwise, uncertainty makes the eruption take zero time
-                LIP_rate_error_min = LIP_rate .- (LIP_volume ./ ((LIP_duration .+ duration_sigma) *1000000))
-                LIP_rate_error_max = (LIP_volume ./ 10000) .- LIP_rate
-            else
-                LIP_rate_error_min = LIP_rate .- (LIP_volume ./ ((LIP_duration .+ duration_sigma) *1000000))
-                LIP_rate_error_max = (LIP_volume ./ ((LIP_duration .- duration_sigma) *1000000)) .- LIP_rate
+            LIP_rate_sigma = (duration_sigma ./ LIP_duration) .* LIP_rate #1 sigma uncertainty on LIP eruption rate
+
+            #If the error on the duration is longer than the duration (producing ∞ eruptive rate), the error on the bulk eruptive rate is set equal to the bulk eruptive rate
+            #This makes the minimum eruptive rate zero and the max twice the calculated rate
+            if LIP_rate_sigma .> LIP_rate
+                LIP_rate_sigma = LIP_rate
             end
 
             #Pull relevant information about the boundary that the LIP overlaps
-            Extinction_rate = 100 .* Boundaries.Mean_Extinction_Rates[i]
-            Extinction_rate_error_lower = Extinction_rate .- (100 .* Boundaries.Min_extinction_rates[i])
-            Extinction_rate_error_upper = (100 .* Boundaries.Max_extinction_rates[i]) .- Extinction_rate
+            Extinction_rate = Boundaries.Mean_Extinction_Rates[i] .* 100
+            Extinction_rate_error_lower = Extinction_rate .- (Boundaries.Min_extinction_rates[i] .* 100)
+            Extinction_rate_error_upper = (Boundaries.Max_extinction_rates[i] .* 100) .- Extinction_rate
 
             #LIP eruption rates or boundary extinction rates that are NaN cannot be plotted, so add the non-NaNs to data table
             if !isnan(LIP_rate) .&& !isnan(Extinction_rate) .&& !isnan(Extinction_rate_error_lower) .&& !isnan(Extinction_rate_error_upper)
-                push!(LIPs_with_extinction, [name, LIP_rate, LIP_rate_error_min, LIP_rate_error_max, Extinction_rate, Extinction_rate_error_lower, Extinction_rate_error_upper, i])
+                push!(LIPs_with_extinction, [name, LIP_rate, LIP_rate_sigma, Extinction_rate, Extinction_rate_error_lower, Extinction_rate_error_upper, i])
             end
         end
     end
 
     #Some LIPs overlap multiple boundaries, so just take the ones with the highest extinction percent
-    Highest_extinction_rate = DataFrame(LIP_name=[], Eruption_rate=[], Eruption_rate_error_lower=[], Eruption_rate_error_upper=[], Mean_extinction_rate=[], Extinction_rate_error_lower=[], Extinction_rate_error_upper=[], boundary_number=[])
+    Highest_extinction_rate = DataFrame(LIP_name=[], Eruption_rate=[], Eruption_rate_sigma=[], Mean_extinction_rate=[], Extinction_rate_error_lower=[], Extinction_rate_error_upper=[], boundary_number=[])
 
     for i = 1:length(LIPs_with_extinction.LIP_name)
         extinction_rates_for_given_LIP = DataFrame() #Hold the results for all the LIPs that overlap more than one boundary
@@ -80,7 +81,7 @@
     Highest_extinction_rate = unique(Highest_extinction_rate) #Remove any duplicates from above proess
     #This dataframe now holds the list of the highest rate LIPs that overlap a given boundary further refined to include each LIP only once, at the highest extinction rate boundary it crosses
 
-    #Use for linear regression
+    #Use for curve fitting
     boundary_match_index = Array{Int64}(undef,0)
     lip_match_index = Array{Int64}(undef,0)
 
@@ -92,8 +93,7 @@
                 #Pull the relevant data out of our dataframe
                 x = Highest_extinction_rate.Eruption_rate[j]
                 y = Highest_extinction_rate.Mean_extinction_rate[j]
-                xerror_min = Highest_extinction_rate.Eruption_rate_error_lower[j]
-                xerror_max = Highest_extinction_rate.Eruption_rate_error_upper[j]
+                x_error = Highest_extinction_rate.Eruption_rate_sigma[j]
                 y_min = Highest_extinction_rate.Extinction_rate_error_lower[j]
                 y_max = Highest_extinction_rate.Extinction_rate_error_upper[j]
                 #Plot according to the precision to which the LIP is dated
@@ -101,11 +101,11 @@
                     # Precisely Dated LIPs. 1σ error < 0.2%
                     push!(boundary_match_index, Highest_extinction_rate.boundary_number[j])
                     push!(lip_match_index, i)
-                    plot!(extinction_and_rate, [x], [y], xerror = ([xerror_min],[xerror_max]), yerror =([y_min],[y_max]), legend=false, markerstrokecolor=:firebrick)
+                    plot!(extinction_and_rate, [x], [y], xerror = [x_error], yerror =([y_min],[y_max]), legend=false, markerstrokecolor=:firebrick)
                     plot!(extinction_and_rate, [x], [y], seriestype=:scatter, color=:firebrick, markerstrokecolor=:firebrick, label="", markersize=4, series_annotations=[text("$n",9)])
                 elseif (LIPs.Start_Age_sigma_Ma[i] .+ LIPs.End_Age_sigma_Ma[i]) / (LIPs.Start_Age_Ma[i] .+ LIPs.End_Age_Ma[i]) .< 0.0085
                     # Moderately well-dated LIPs. 1σ error < 0.85%
-                    plot!(extinction_and_rate, [x], [y], xerror = ([xerror_min],[xerror_max]), yerror =([y_min],[y_max]), legend=false, markerstrokecolor=:purple4)
+                    plot!(extinction_and_rate, [x], [y], xerror = [x_error], yerror =([y_min],[y_max]), legend=false, markerstrokecolor=:purple4)
                     plot!(extinction_and_rate, [x], [y], seriestype=:scatter, color=:purple4, markerstrokecolor=:purple4, label="", markersize=4, series_annotations=[text("$n",4)])
                 else
                     # All other LIPs. Not well dated
@@ -120,11 +120,11 @@
         matches["lip_rates"] = LIPs.Eruption_rate_km3_yr[lip_match_index]
         matches["extinction_percentages"] = Boundaries.Mean_Extinction_Rates[boundary_match_index] .* 100
 
-        # Ordinary Least Squares Regression
+    # Ordinary Least Squares Regression
         ols_mdl = lm(@formula(extinction_percentages ~ lip_rates), DataFrame(matches))
-        line = GLM.coef(ols_mdl)[2] .* matches["lip_rates"] .+ GLM.coef(ols_mdl)[1] # Regression line
+        line = GLM.coef(ols_mdl)[2] .* matches["lip_rates"] .+ GLM.coef(ols_mdl)[1] # Linear regression line
 
-        #Show std error, t value, p value
+        # Show std error, t value, p value
         show(ols_mdl)
 
         # Calculate r-squared statistic (AKA coefficient of determination)
@@ -134,28 +134,58 @@
 
         # Plot regression line across a wider range of points (to see intercept)
         x_line = (0:0.1:4)
-        longer_line = GLM.coef(ols_mdl)[2] .* x_line .+ GLM.coef(ols_mdl)[1]
-        plot!(extinction_and_rate, x_line, longer_line, label="", line=(:dash, 1, :gray))
+        longer_line = GLM.coef(ols_mdl)[2] .* x_line .+ GLM.coef(ols_mdl)[1] #Linear Regression line
+        plot!(extinction_and_rate, x_line, longer_line, label="", line=(:dash, 1, :firebrick))
+
+    # Logistic Regression
+        # Logistic Regression Function
+        function logistic(x, param)
+            k,x₀,y₀ = param
+            xₗ = log.(x)
+            y = @. ((100 - y₀) / (1 + exp(-k*(xₗ - x₀)))) + y₀
+        end
+
+        # Fitting
+        param₀ = [1.0,1.0,10.0] # Initial guess
+        fitted_logistic = curve_fit(logistic, Highest_extinction_rate.Eruption_rate, Highest_extinction_rate.Mean_extinction_rate, param₀)
+        fitted_logistic.param
+
+        # Results and standard error
+        println("\nLogistic fit parameters:")
+        show(fitted_logistic.param)
+        println("\nParameters standard error:")
+        show(stderror(fitted_logistic))
+
+        # Calculate r-squared statistic (AKA coefficient of determination)
+        ŷ = logistic(Highest_extinction_rate.Eruption_rate, fitted_logistic.param)
+        logistic_r = rsquared(Highest_extinction_rate.Eruption_rate, Highest_extinction_rate.Mean_extinction_rate, ŷ) #R-squared calculation
+        println("\n Logistic regression r-squared: $logistic_r")
+
+        # Plot regression line
+        plot!(extinction_and_rate, 0:0.1:4, logistic(0:0.1:4, fitted_logistic.param), label="", line=(:dash, 1, :black))
 
     savefig(extinction_and_rate, "LIPRatevsExtinctionPercent.pdf")
     display(extinction_and_rate)
 
 ## --- Calculate predicted extinction rate from volcanism alone for precisely and moderately well-dated LIPs
+    for i in 1:length(Highest_extinction_rate.LIP_name)
+        name = Highest_extinction_rate.LIP_name[i]
+        n = 10^5 # For Monte Carlo simulations for error propagation
+        pop_volcanism_eruption_rate = rand(Normal(Highest_extinction_rate.Eruption_rate[i], Highest_extinction_rate.Eruption_rate_sigma[i]), n)
+        pop_slope = rand(Normal(GLM.coef(ols_mdl)[2], GLM.stderror(ols_mdl)[2]), n)
+        pop_intercept = rand(Normal(GLM.coef(ols_mdl)[1], GLM.stderror(ols_mdl)[1]), n)
 
-    for name = ["Siberian Traps", "CAMP", "Deccan Traps", "Emeishan", "Karoo-Ferrar", "Parana-Etendeka", "North Atlantic Igneous Province", "Columbia River", "Tarim", "Afro-Arabian", "Qiangtang", "Jutland (Skagerrak)", "Chon Aike"]
-        i = findfirst(LIPs.Name .== name)
-        volcanism_duration = (LIPs.Start_Age_Ma[i] ± LIPs.Start_Age_sigma_Ma[i]) - (LIPs.End_Age_Ma[i] ± LIPs.End_Age_sigma_Ma[i])
-        volcanism_eruption_rate = LIPs.Volume_km3[i] / (volcanism_duration * 10^6)
-        slope = GLM.coef(ols_mdl)[2] ± GLM.stderror(ols_mdl)[2]
-        intercept = GLM.coef(ols_mdl)[1] ± GLM.stderror(ols_mdl)[1]
+        pop_predicted_extinction_percent = Vector{Float64}(undef, n)
+        for j in 1:n
+            pop_predicted_extinction_percent[j] = pop_intercept[rand(1:n)] + (pop_slope[rand(1:n)] * pop_volcanism_eruption_rate[rand(1:n)])
+        end
+        predicted_extinction_percent = mean(pop_predicted_extinction_percent) ± std(pop_predicted_extinction_percent)
 
-        predicted_extinction_percent = intercept + slope * volcanism_eruption_rate
-        println("\nPredicted extinction rate from $name eruption rate (± one-sigma):\n $predicted_extinction_percent")
+        println("\nPredicted extinction magnitude from $name eruption rate (± one-sigma):\n $predicted_extinction_percent")
     end
 
-
 ## --- Observed Correlation between Extinction and LIP Eruption Rate, showing only the most precisely dated LIPs (1σ error < 0.2%). Same method as above, just fewer points plotted
-    precise_extinction_and_rate = plot(xlabel="Bulk eruptive rate (km³/yr)", ylabel="Mean extinction rate (%/interval)", xlims=(0.0,3.7), ylims=(0.0,90), framestyle=:box)
+    precise_extinction_and_rate = plot(xlabel="Bulk eruptive rate (km³/yr)", ylabel="Extinction magnitude (%)", xlims=(0.0,3.7), ylims=(0,90), framestyle=:box)
 
     #Use for linear regression
     boundary_match_index = Array{Int64}(undef,0)
@@ -169,8 +199,7 @@
                 #Pull the relevant data out of our dataframe
                 x = Highest_extinction_rate.Eruption_rate[j]
                 y = Highest_extinction_rate.Mean_extinction_rate[j]
-                xerror_min = Highest_extinction_rate.Eruption_rate_error_lower[j]
-                xerror_max = Highest_extinction_rate.Eruption_rate_error_upper[j]
+                x_error = Highest_extinction_rate.Eruption_rate_sigma[j]
                 y_min = Highest_extinction_rate.Extinction_rate_error_lower[j]
                 y_max = Highest_extinction_rate.Extinction_rate_error_upper[j]
                 #Plot according to the precision to which the LIP is dated
@@ -178,7 +207,7 @@
                     # Precisely Dated LIPs. 1σ error < 0.2%
                     push!(boundary_match_index, Highest_extinction_rate.boundary_number[j])
                     push!(lip_match_index, i)
-                    plot!(precise_extinction_and_rate, [x], [y], xerror = ([xerror_min],[xerror_max]), yerror =([y_min],[y_max]), legend=false, markerstrokecolor=:firebrick)
+                    plot!(precise_extinction_and_rate, [x], [y], xerror = [x_error], yerror =([y_min],[y_max]), legend=false, markerstrokecolor=:firebrick)
                     plot!(precise_extinction_and_rate, [x], [y], seriestype=:scatter, color=:firebrick, markerstrokecolor=:firebrick, label="", markersize=4, series_annotations=[text("$n",9)])
                 end
             end
@@ -190,9 +219,9 @@
         matches["lip_rates"] = LIPs.Eruption_rate_km3_yr[lip_match_index]
         matches["extinction_percentages"] = Boundaries.Mean_Extinction_Rates[boundary_match_index] .* 100
 
-        # Ordinary Least Squares Regression
+    # Ordinary Least Squares Regression
         ols_mdl = lm(@formula(extinction_percentages ~ lip_rates), DataFrame(matches))
-        line = GLM.coef(ols_mdl)[2] .* matches["lip_rates"] .+ GLM.coef(ols_mdl)[1] # Regression line
+        line = GLM.coef(ols_mdl)[2] .* matches["lip_rates"] .+ GLM.coef(ols_mdl)[1] # Linear regression line
 
         #Show std error, t value, p value
         show(ols_mdl)
@@ -214,7 +243,7 @@
     nlips = length(LIPs.Start_Age_Ma)
     nboundaries = length(Boundaries.Age_Ma)
 
-    two_regression_extinction_and_rate = plot(xlabel="Bulk eruptive rate (km³/yr)", ylabel="Mean extinction rate (%/interval)", xlims=(0.0,3.7), ylims=(-10,90), framestyle=:box)
+    two_regression_extinction_and_rate = plot(xlabel="Bulk eruptive rate (km³/yr)", ylabel="Extinction magnitude (%)", xlims=(0.0,3.7), ylims=(-10,90), framestyle=:box)
 
     #Use for linear regression
     boundary_match_index_lowrate = Array{Int64}(undef,0)
@@ -229,8 +258,7 @@
                 #Pull the relevant data out of our dataframe
                 x = Highest_extinction_rate.Eruption_rate[j]
                 y = Highest_extinction_rate.Mean_extinction_rate[j]
-                xerror_min = Highest_extinction_rate.Eruption_rate_error_lower[j]
-                xerror_max = Highest_extinction_rate.Eruption_rate_error_upper[j]
+                x_error = Highest_extinction_rate.Eruption_rate_sigma[j]
                 y_min = Highest_extinction_rate.Extinction_rate_error_lower[j]
                 y_max = Highest_extinction_rate.Extinction_rate_error_upper[j]
                 #Plot according to the rate of the precise LIPs
@@ -239,12 +267,12 @@
                     if x .< 1.0
                         push!(boundary_match_index_lowrate, Highest_extinction_rate.boundary_number[j])
                         push!(lip_match_index_lowrate, i)
-                        plot!(two_regression_extinction_and_rate, [x], [y], xerror = ([xerror_min],[xerror_max]), yerror =([y_min],[y_max]), legend=false, markerstrokecolor=:orange)
+                        plot!(two_regression_extinction_and_rate, [x], [y], xerror = [x_error], yerror =([y_min],[y_max]), legend=false, markerstrokecolor=:orange)
                         plot!(two_regression_extinction_and_rate, [x], [y], seriestype=:scatter, color=:orange, markerstrokecolor=:orange, label="", markersize=4, series_annotations=[text("$n",9)])
                     elseif x .>= 1.0
                         push!(boundary_match_index_highrate, Highest_extinction_rate.boundary_number[j])
                         push!(lip_match_index_highrate, i)
-                        plot!(two_regression_extinction_and_rate, [x], [y], xerror = ([xerror_min],[xerror_max]), yerror =([y_min],[y_max]), legend=false, markerstrokecolor=:blue2)
+                        plot!(two_regression_extinction_and_rate, [x], [y], xerror = [x_error], yerror =([y_min],[y_max]), legend=false, markerstrokecolor=:blue2)
                         plot!(two_regression_extinction_and_rate, [x], [y], seriestype=:scatter, color=:blue2, markerstrokecolor=:blue2, label="", markersize=4, series_annotations=[text("$n",9)])
                     end
                 end
@@ -260,7 +288,7 @@
 
             # Ordinary Least Squares Regression
             ols_mdl = lm(@formula(extinction_percentages ~ lip_rates), DataFrame(lowrate_matches))
-            line = GLM.coef(ols_mdl)[2] .* lowrate_matches["lip_rates"] .+ GLM.coef(ols_mdl)[1] # Regression line
+            line = GLM.coef(ols_mdl)[2] .* lowrate_matches["lip_rates"] .+ GLM.coef(ols_mdl)[1] # Linear regression line
 
             #Show std error, t value, p value
             show(ols_mdl)
@@ -277,14 +305,14 @@
             x_line = (0:0.1:4)
             longer_line = GLM.coef(ols_mdl)[2] .* x_line .+ GLM.coef(ols_mdl)[1]
             plot!(two_regression_extinction_and_rate, x_line, longer_line, label="", line=(:dash, 1, :orange))
-        #Low rate regression
+        #High rate regression
             highrate_matches = Dict()
             highrate_matches["lip_rates"] = LIPs.Eruption_rate_km3_yr[lip_match_index_highrate]
             highrate_matches["extinction_percentages"] = Boundaries.Mean_Extinction_Rates[boundary_match_index_highrate] .* 100
 
             # Ordinary Least Squares Regression
             ols_mdl = lm(@formula(extinction_percentages ~ lip_rates), DataFrame(highrate_matches))
-            line = GLM.coef(ols_mdl)[2] .* highrate_matches["lip_rates"] .+ GLM.coef(ols_mdl)[1] # Regression line
+            line = GLM.coef(ols_mdl)[2] .* highrate_matches["lip_rates"] .+ GLM.coef(ols_mdl)[1] # Linear regression line
 
             #Show std error, t value, p value
             show(ols_mdl)

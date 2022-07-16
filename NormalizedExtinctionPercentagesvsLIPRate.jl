@@ -62,7 +62,7 @@
         ylab = ["0","10","20","30","40","50","60","70"]
 
         #Plot results as heatmap
-        heatmap_observed = heatmap(coincidence_products_observed, xlabel="Bulk eruption rate (km³/yr)", xticks=(xloc,xlab), ylabel="Mean extinction rate (%/interval)", yticks=(yloc,ylab), color = :gnuplot)
+        heatmap_observed = heatmap(coincidence_products_observed, xlabel="Bulk eruption rate (km³/yr)", xticks=(xloc,xlab), ylabel="Extinction magnitude (%)", yticks=(yloc,ylab), color = :gnuplot)
         savefig(heatmap_observed, "Observed Extinction Percent LIP Size Coincidence Products.pdf")
         display(heatmap_observed)
 
@@ -132,7 +132,7 @@
         ylab = ["0","10","20","30","40","50","60","70"]
 
         #Plot results as heatmap
-        heatmap_max = heatmap(coincidence_products_max, xlabel="Bulk eruption rate (km³/yr)", xticks=(xloc,xlab), ylabel="Mean extinction rate (%/interval)", yticks=(yloc,ylab), color = :gnuplot)
+        heatmap_max = heatmap(coincidence_products_max, xlabel="Bulk eruption rate (km³/yr)", xticks=(xloc,xlab), ylabel="Extinction magnitude (%)", yticks=(yloc,ylab), color = :gnuplot)
         savefig(heatmap_max, "Max Possible Extinction Percent LIP Size Coincidence Product.pdf")
         display(heatmap_max)
 
@@ -148,7 +148,7 @@
         ylab = ["0","10","20","30","40","50","60","70"]
 
         #Plot results as heatmap
-        heatmap_normalized = heatmap(c_ratio, xlabel="Bulk eruption rate (km³/yr)", xticks=(xloc,xlab), ylabel="Mean extinction rate (%/interval)", yticks=(yloc,ylab), color = :gnuplot)
+        heatmap_normalized = heatmap(c_ratio, xlabel="Bulk eruption rate (km³/yr)", xticks=(xloc,xlab), ylabel="Extinction magnitude (%)", yticks=(yloc,ylab), color = :gnuplot)
         savefig(heatmap_normalized, "ObservedExtinctionPercentLIPSizeRelativeToMax.pdf")
         display(heatmap_normalized)
 

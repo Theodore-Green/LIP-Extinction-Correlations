@@ -1,13 +1,14 @@
 ## --- Load required packages
     using Plots; gr(); default(fmt=:svg)
-    using StatGeochem
+    using Statistics, StatsBase, StatGeochem, SpecialFunctions, LoopVectorization
     using LaTeXStrings, Formatting
-    using DataFrames
+    using GLM, DataFrames
 
 ## --- Read datasets and define constants / subsets
     # Constants
     TPhanerozoic = 541.0 #Duration of the Phanerozoic
     Φc = 0.23 #Dimensionless constant specifying flux (from Rothman)
+    Φc_error = 0.07 #Uncertainty on dimensionless constant specifying flux (from Rothman)
     τ0 = 140 #Oceanic turnover time in ky (from Rothman)
     m =  1.392*(10.0^20) #AKA m* from Rothman. Steady state value of mass of inorganic CO2 (g) in preindustrial reservoir (converted from 38,000Pg of C listed in Rothman, from Emerson and Hedges 2008)
 
@@ -30,12 +31,26 @@
         Mass_change = abs(Δm) ./ m #Uses 0.5wt% CO2
         Mass_change_low = abs(Δm_low) ./ m #Use 0.2wt% CO2
         Dimensionless_duration = (Φc .* τenv) ./ (2 .* τ0)
-        if LIPs.Name[i] == "Emeishan" #Emeishan duration is such that, with uncertainties, it can be negative. Avoid this by setting a reasonable minimum duration of 10,000 years. All other LIPs have 2σ uncertainties
-            duration_error_min = (Φc .* (10) ./ (2 .* τ0))
-        else
-            duration_error_min = (Φc .* (τenv .- τenv_error) ./ (2 .* τ0))
+
+        #Dimensionless duration error propagation
+        n = 10^5 #Number of Monte Carlo simulations for error propagation
+        pop_Φc = rand(Normal(Φc, Φc_error), n)
+        pop_τenv = rand(Normal(τenv, τenv_error), n)
+        pop_dimensionless_duration = Vector{Float64}(undef, n)
+        for j in 1:n
+            pop_dimensionless_duration[j] = (pop_Φc[rand(1:n)] .* pop_τenv[rand(1:n)]) ./ (2 .* τ0)
         end
-        duration_error_max = (Φc .* (τenv .+ τenv_error) ./ (2 .* τ0))
+        duration_error = std(pop_dimensionless_duration)
+
+        #Some LIPs (like Emeishan) have durations such that, with uncertainties, it can be negative. Avoid this by setting a reasonable minimum duration of 10,000 years. All other LIPs have 1σ uncertainties
+        if duration_error .> Dimensionless_duration
+            duration_error_min = (Φc .* 10) ./ (2 .* τ0)
+            duration_error_max = Dimensionless_duration .+ duration_error
+        else
+            duration_error_min = Dimensionless_duration .- duration_error
+            duration_error_max = Dimensionless_duration .+ duration_error
+        end
+
         if !isnan(Mass_change) #Only consider the LIPs that actually have volume information and therefore calculable Mass changes
             push!(LIP_calculations, [LIPs.Name[i], LIPs.Continental_or_oceanic_[i], Mass_change, Mass_change_low, Dimensionless_duration, duration_error_min, duration_error_max])
         end
@@ -78,8 +93,8 @@
 
     Highest_extinction_rate = unique(Highest_extinction_rate) #Remove any duplicated LIP-extinction pairs
 ## --- LIP Rates: Plots
-    rothmanfigure = plot(xlabel="Dimensionless duration Φcτenv/2τ₀", ylabel="Direct Igneous CO₂ Release |Δm|/m*", ylims=(10^(-2),10^0), xlims=(10^(-1),10^(2)), colorbar_title="Boundary Extinction Rate (%/interval)", framestyle=:box, legend=false, colorbar=true)
-    rothmanfigure_allLIPs = plot(xlabel="Dimensionless duration Φcτenv/2τ₀", ylabel="Direct Igneous CO₂ Release |Δm|/m*", ylims=(10^(-2),10^1), xlims=(10^(-1),10^(2)), colorbar_title="Boundary Extinction Rate (%/interval)", framestyle=:box, legend=false, colorbar=true)
+    rothmanfigure = plot(xlabel="Dimensionless duration Φcτenv/2τ₀", ylabel="Direct Igneous CO₂ Release |Δm|/m*", ylims=(10^(-2),10^0), xlims=(10^(-1),10^(2)), colorbar_title="Extinction magnitude (%)", framestyle=:box, legend=false, colorbar=true)
+    rothmanfigure_allLIPs = plot(xlabel="Dimensionless duration Φcτenv/2τ₀", ylabel="Direct Igneous CO₂ Release |Δm|/m*", ylims=(10^(-2),10^1), xlims=(10^(-1),10^(2)), colorbar_title="Extinction magnitude (%)", framestyle=:box, legend=false, colorbar=true)
 
     for i = 1:length(LIP_calculations.LIP_name)
         for j in 1:length(Highest_extinction_rate.LIP_name)
@@ -135,6 +150,8 @@
     oceanic_carbon_uptake = [637, 1020, 1156, 1472, 1743, 1973] #Pg of carbon dioxide uptake in each emission scenario from IPCC report
     Mass_change_modern = Vector{Float64}(undef,length(emission_scenario))
     Dimensionless_duration_modern = Vector{Float64}(undef,length(emission_scenario))
+    Dimensionless_duration_modern_error_min = Vector{Float64}(undef,length(emission_scenario))
+    Dimensionless_duration_modern_error_max = Vector{Float64}(undef,length(emission_scenario))
 
     for i = 1:length(emission_scenario)
         if i == 1
@@ -145,6 +162,16 @@
         Δm = oceanic_carbon_uptake[i] .* 10^15 #Mass of inorganic carbon dioxide (g) from anthropogenic emissions into the ocean
         Mass_change_modern[i] = abs(Δm) ./ m  #Mass change and convert to g
         Dimensionless_duration_modern[i] = (Φc .* τenv_modern) ./ (2 .* τ0)
+        #Duration error propagation
+        n = 10^5 #Number of Monte Carlo simulations for error propagation
+        pop_Φc = rand(Normal(Φc, Φc_error), n)
+        pop_dimensionless_duration_modern = Vector{Float64}(undef, n)
+        for j in 1:n
+            pop_dimensionless_duration_modern[j] = (pop_Φc[rand(1:n)] .* τenv_modern) ./ (2 .* τ0)
+        end
+        Dimensionless_duration_modern_error = std(pop_dimensionless_duration_modern)
+        Dimensionless_duration_modern_error_min[i] = Dimensionless_duration_modern[i] .- Dimensionless_duration_modern_error
+        Dimensionless_duration_modern_error_max[i] = Dimensionless_duration_modern[i] .+ Dimensionless_duration_modern_error
     end
 
     #Plot the LIP-extinction pairs frm the main text figure
@@ -165,10 +192,11 @@
     #Plot the modern and projected emission scenarios from IPCC report
     for i = 1:length(Mass_change_modern)
         e = emission_scenario[i]
+        xerr = (([Dimensionless_duration_modern[i] .- Dimensionless_duration_modern_error_min[i]]), ([Dimensionless_duration_modern_error_max[i] .- Dimensionless_duration_modern[i]]))
         if i == 1
-            plot!(rothmanfiguremodern, [Dimensionless_duration_modern[i]], [Mass_change_modern[i]], xscale=:log10, yscale=:log10, seriestype=:scatter, color=:green1, series_annotations=[text("Present",3)])
+            plot!(rothmanfiguremodern, [Dimensionless_duration_modern[i]], [Mass_change_modern[i]], xerr = xerr, xscale=:log10, yscale=:log10, seriestype=:scatter, color=:green1, series_annotations=[text("Present",3)])
         else
-            plot!(rothmanfiguremodern, [Dimensionless_duration_modern[i]], [Mass_change_modern[i]], xscale=:log10, yscale=:log10, seriestype=:scatter, color=:blue, series_annotations=[text("SSP-$e",3)])
+            plot!(rothmanfiguremodern, [Dimensionless_duration_modern[i]], [Mass_change_modern[i]], xerr = xerr, xscale=:log10, yscale=:log10, seriestype=:scatter, color=:blue, series_annotations=[text("SSP-$e",3)])
         end
     end
 
