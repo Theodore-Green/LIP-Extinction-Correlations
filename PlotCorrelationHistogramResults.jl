@@ -178,7 +178,7 @@
 
     #Log Scale
     y = log10.(histcounts ./ (sum(histcounts) * (histmax-histmin)/histbins))
-    histogram = plot(xlabel="Total coincidence product Ψ", ylabel="Log likelihood", framestyle=:box, fg_color_legend=:white)
+    histogram = plot(xlabel="Total coincidence product Ψ", ylabel="Log relative frequency", framestyle=:box, fg_color_legend=:white)
     plot!(histogram, x, y, label="Stochastic distribution", xlims=(histmin, histmax),color=lines[1])
     plot!(histogram, x, y, label="", fillrange=ylims()[1]*ones(size(histcounts)), fillalpha=0.05, fillcolor=lines[1], linealpha=0, ylims=ylims())
     plot!(histogram, x[x.>coincidence_ratio_observed], y[x.>coincidence_ratio_observed], label="", fillrange=ylims()[1]*ones(count(x.>coincidence_ratio_observed)), fillalpha=0.3, fillcolor=lines[1], linealpha=0, ylims=ylims())
