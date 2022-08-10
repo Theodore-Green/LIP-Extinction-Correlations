@@ -87,7 +87,7 @@
     # nbins = 100 # Number of bins used in numerical integration / summation of distribution product
 
     # Define histogram function for LIPs
-    function uniform_LIP_histogram(ntests, startage, startage_σ, endage, endage_σ, boundary_age_σ, ΔT, histmin, histmax, histbins; Δσ=10, nbins=100)
+    function uniform_LIP_histogram(ntests, startage, startage_σ, endage, endage_σ, boundary_age_σ, ΔT, histmin, histmax, histbins; Δσ=10, nbins=100, rng=local_rng())
         # Initialize array of histogram bins, with zero counts per bin to start
         histcounts = fill(0, histbins)
 
@@ -98,7 +98,7 @@
         rand_boundary_age = Array{Float64}(undef, length(boundary_age_σ))
         for n = 1:ntests
             # Draw N boundaries from a random uniform distribuion unif(0, ΔT)
-            rand!(rand_boundary_age) # Fill array in-place with VectorizedRNG
+            rand!(rng, rand_boundary_age) # Fill array in-place with VectorizedRNG
             rand_boundary_age .*= ΔT # Scale appropriately
             # Calculate the coicidence ratio for these uniform random boundaries
             coincidenceₙ = interval_coincidence!(boundary_probability, cdfperbin, xedges, startage, startage_σ, endage, endage_σ, rand_boundary_age, boundary_age_σ, ΔT; Δσ=Δσ)
@@ -116,7 +116,7 @@
     end
 
     # Define histogram function for impacts
-    function uniform_impact_histogram(ntests, event_age, event_age_σ, boundary_age_σ, ΔT, histmin, histmax, histbins)
+    function uniform_impact_histogram(ntests, event_age, event_age_σ, boundary_age_σ, ΔT, histmin, histmax, histbins, rng=local_rng())
         # Initialize array of histogram bins, with zero counts per bin to start
         histcounts = fill(0, histbins)
 
@@ -124,7 +124,7 @@
         rand_boundary_age = Array{Float64}(undef, length(boundary_age_σ))
         for n = 1:ntests
             # Draw N boundaries from a random uniform distribuion unif(0, ΔT)
-            rand!(rand_boundary_age) # Fill array in-place with VectorizedRNG
+            rand!(rng, rand_boundary_age) # Fill array in-place with VectorizedRNG
             rand_boundary_age .*= ΔT # Scale appropriately
             # Calculate the coicidence ratio for these uniform random boundaries
             coincidenceₙ = gaussian_coincidence(event_age, event_age_σ, rand_boundary_age, boundary_age_σ, ΔT)
