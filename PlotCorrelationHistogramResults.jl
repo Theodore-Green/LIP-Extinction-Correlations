@@ -65,7 +65,7 @@
             if occursin("without", filenamebase)
                 listname = "Stage_without_SiberianTraps"
             else
-                listname = "Stage_without_SiberianTraps"
+                listname = "Stage_with_SiberianTraps"
             end
         end
 
@@ -114,7 +114,7 @@
                 if occursin("without", filenamebase)
                     listname = "Impacts_BigFive_without_Chicxulub_40km"
                 else
-                    listname = "Impacts_BigFive_without_Chicxulub_40km"
+                    listname = "Impacts_BigFive_with_Chicxulub_40km"
                 end
             end
         else
